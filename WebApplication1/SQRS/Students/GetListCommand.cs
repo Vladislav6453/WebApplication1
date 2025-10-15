@@ -2,11 +2,11 @@
 using WebApplication1.DB;
 using WebApplication1.SQRS.DTO;
 
-namespace WebApplication1.SQRS
+namespace WebApplication1.SQRS.Students
 {
     public class GetListStudentByGroupCommand : IRequest<IEnumerable<StudentDTO>>
     {
-        public int IdStudent { get; set }
+        public int GroupId { get; set; }
 
         public class GetListStudentByGroupCommandHandler :
             IRequestHandler<GetListStudentByGroupCommand, IEnumerable<StudentDTO>>
@@ -20,8 +20,7 @@ namespace WebApplication1.SQRS
             public async Task<IEnumerable<StudentDTO>> HandleAsync(GetListStudentByGroupCommand request,
                 CancellationToken ct = default)
             {
-                return await db.Students.Where(s => s.IdGroup == request.);
-
+                return db.Students.Where(s => s.IdGroup == request.GroupId).Select(s => new StudentDTO {FirstName = s.FirstName, Id = s.Id , LastName=s.LastName, Gender=s.Gender, Phone=s.Phone,IdGroup=s.IdGroup});
             }
         }
     }
