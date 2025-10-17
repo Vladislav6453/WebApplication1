@@ -1,4 +1,6 @@
-﻿namespace WebApplication1.SQRS.DTO
+﻿using WebApplication1.DB;
+
+namespace WebApplication1.SQRS.DTO
 {
     public class StudentDTO
     {

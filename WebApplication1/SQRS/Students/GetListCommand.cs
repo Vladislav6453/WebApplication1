@@ -7,7 +7,6 @@ namespace WebApplication1.SQRS.Students
     public class GetListStudentByGroupCommand : IRequest<IEnumerable<StudentDTO>>
     {
         public int GroupId { get; set; }
-
         public class GetListStudentByGroupCommandHandler :
             IRequestHandler<GetListStudentByGroupCommand, IEnumerable<StudentDTO>>
         {

@@ -4,7 +4,10 @@ using MyMediator.Types;
 using WebApplication1.SQRS;
 using WebApplication1.SQRS.CountStudent;
 using WebApplication1.SQRS.DTO;
+using WebApplication1.SQRS.Groups;
+using WebApplication1.SQRS.GroupsWithStudents;
 using WebApplication1.SQRS.Students;
+using WebApplication1.SQRS.StudentsOutGroups;
 
 namespace WebApplication1.Controllers
 {
@@ -18,22 +21,52 @@ namespace WebApplication1.Controllers
             this.mediator = mediator;
         }
 
-        [HttpGet("SpisokStudentByGroupId")]
-        public async Task<ActionResult<IEnumerable<GroupDTO>>> ListGroups(int ID)
+        [HttpGet("SpisokStudentByGroupId/{ID}")]
+        public async Task<ActionResult<IEnumerable<StudentDTO>>> ListStudents(int ID)
         {
             var command = new GetListStudentByGroupCommand { GroupId = ID };
             var result = await mediator.SendAsync(command);
             return Ok(result);
         }
 
-        [HttpGet("SpisokStudentByGroupIdToGenders")]
-        public async Task<ActionResult<IEnumerable<int>>> ListGender(int ID)
+        [HttpGet("SpisokStudentByGroupIdToGenders/{ID}")]
+        public async Task<ActionResult<GendersCountDTO>> ListGender(int ID)
         {
             var command = new GetCountGendersStudentCommand { GroupId = ID };
             var result = await mediator.SendAsync(command);
             return Ok(result);
         }
 
+        [HttpGet("GetListStudentsOutGroups")]
+        public async Task<ActionResult<IEnumerable<StudentDTO>>> ListStudent()
+        {
+            var command = new GetListStudentsOutGroupsCommand { };
+            var result = await mediator.SendAsync(command);
+            return Ok(result);
+        }
 
+        [HttpGet("GetListGroupsOutStudents")]
+        public async Task<ActionResult<IEnumerable<GroupDTO>>> GetListGroupsOutStudents()
+        {
+            var command = new GetGroupsOutOfStudentsCommand { };
+            var result = await mediator.SendAsync(command);
+            return Ok(result);
+        }
+
+        [HttpGet("GetListGroupsWithStudents")]
+        public async Task<ActionResult<IEnumerable<GroupDTO>>> GetListGroupsWithStudents()
+        {
+            var command = new GetCountGroupAndCountStudentCommand { };
+            var result = await mediator.SendAsync(command);
+            return Ok(result);
+        }
+
+        [HttpGet("GetListGroupsWithStudentsWithIndex/{spec}")]
+        public async Task<ActionResult<IEnumerable<GroupDTO>>> GetListGroupsWithStudentsWithIndex(int spec)
+        {
+            var command = new GetGroupsWithStudentsWithIndexCommand { GroupSpecial = spec};
+            var result = await mediator.SendAsync(command);
+            return Ok(result);
+        }
     }
 }

@@ -10,6 +10,6 @@ namespace WebApplication1.SQRS.DTO
 
         public int? IdSpecial { get; set; }
 
-        public virtual Special? IdSpecialNavigation { get; set; }
+        public int? StudentCount { get; set; }
     }
 }

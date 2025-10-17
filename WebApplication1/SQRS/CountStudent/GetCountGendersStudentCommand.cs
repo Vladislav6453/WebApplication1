@@ -18,6 +18,7 @@ namespace WebApplication1.SQRS.CountStudent
             {
                 this.db = db;
             }
+
             public async Task<GendersCountDTO> HandleAsync(GetCountGendersStudentCommand request,
                 CancellationToken ct = default)
             {
