@@ -16,6 +16,7 @@
 //Console.ReadLine();
 
 //2
+using MyMediator.Types;
 using System.Net.Http.Json;
 using WebApplication1.SQRS.DTO;
 
@@ -57,15 +58,39 @@ using WebApplication1.SQRS.DTO;
 //Console.ReadLine();
 
 //6
-Console.Write("Введите ID специальность группы:");
-int spec = int.Parse(Console.ReadLine());
-HttpClient client = new HttpClient();
-client.BaseAddress = new Uri("http://localhost:5251/api/");
-var result = await client.GetAsync($"Students/GetListGroupsWithStudentsWithIndex/{spec}");
-var data = await result.Content.ReadFromJsonAsync<IEnumerable<GroupDTO>>();
-Console.WriteLine($"У нас всего {data.Count()} групп со специальностью с ID {spec}.");
-foreach (GroupDTO i in data)
-{
-    Console.WriteLine($"Название группы - {i.Title}, количество ее студентов - {i.StudentCount}.");
-}
-Console.ReadLine();
+//Console.Write("Введите ID специальность группы:");
+//int spec = int.Parse(Console.ReadLine());
+//HttpClient client = new HttpClient();
+//client.BaseAddress = new Uri("http://localhost:5251/api/");
+//var result = await client.GetAsync($"Students/GetListGroupsWithStudentsWithIndex/{spec}");
+//var data = await result.Content.ReadFromJsonAsync<IEnumerable<GroupDTO>>();
+//Console.WriteLine($"У нас всего {data.Count()} групп со специальностью с ID {spec}.");
+//foreach (GroupDTO i in data)
+//{
+//    Console.WriteLine($"Название группы - {i.Title}, количество ее студентов - {i.StudentCount}.");
+//}
+//Console.ReadLine();
+
+//7
+//Console.Write("Введите ID специальность новой группы:");
+//int spec = int.Parse(Console.ReadLine());
+//Console.Write("И напиши что-нибудь в названии:");
+//string title = Console.ReadLine();
+//HttpClient client = new HttpClient();
+//client.BaseAddress = new Uri("http://localhost:5251/api/");
+//var result = await client.GetAsync($"Students/GetCreateNewGroupWithSpecComamnd/{spec}/{title}");
+////var data = await result.Content.ReadFromJsonAsync<Unit>();
+//Console.WriteLine($"Новая группа с ID специальностью {spec} и названием '{title}' была создана.");
+//Console.ReadLine();
+
+//8
+//Console.Write("Введите ID группы:");
+//int idgroup = int.Parse(Console.ReadLine());
+//Console.Write("Введите ID студента группы:");
+//int idstudent = int.Parse(Console.ReadLine());
+//HttpClient client = new HttpClient();
+//client.BaseAddress = new Uri("http://localhost:5251/api/");
+//var result = await client.GetAsync($"Students/GetStudentPeveodToAnyGroupComamnd/{idgroup}/{idstudent}");
+////var data = await result.Content.ReadFromJsonAsync<Unit>();
+//Console.WriteLine($"Вы перевели студента с ID {idstudent} в группу {idgroup}.");
+//Console.ReadLine();

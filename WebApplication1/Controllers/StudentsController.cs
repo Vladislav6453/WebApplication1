@@ -68,5 +68,22 @@ namespace WebApplication1.Controllers
             var result = await mediator.SendAsync(command);
             return Ok(result);
         }
+
+        [HttpGet("GetNewGroupWithSpec/{spec}/{title}")]
+        public async Task<ActionResult> GetNewGroupWithSpec(string title,int spec)
+        {
+            var command = new GetCreateNewGroupWithSpecComamnd { NewGroupTitle = title, NewGroupSpecial = spec };
+            await mediator.SendAsync(command);
+            return Ok();
+        }
+
+
+        [HttpGet("GetStudentToAnyGroup/{idgroup}/{idstudent}")]
+        public async Task<ActionResult> GetStudentToAnyGroup(int idgroup, int idstudent)
+        {
+            var command = new GetStudentPeveodToAnyGroupComamnd { GroupId = idgroup, StudentId = idstudent };
+            await mediator.SendAsync(command);
+            return Ok();
+        }
     }
 }
