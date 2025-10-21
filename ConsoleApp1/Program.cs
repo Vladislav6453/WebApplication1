@@ -94,3 +94,15 @@ using WebApplication1.SQRS.DTO;
 ////var data = await result.Content.ReadFromJsonAsync<Unit>();
 //Console.WriteLine($"Вы перевели студента с ID {idstudent} в группу {idgroup}.");
 //Console.ReadLine();
+
+//9
+HttpClient client = new HttpClient();
+client.BaseAddress = new Uri("http://localhost:5251/api/");
+var result = await client.GetAsync($"Students/GetPovtorStudentToGroupCommand");
+var data = await result.Content.ReadFromJsonAsync<List<StudentDTO>>();
+    Console.WriteLine($"У нас всего {data.Count()} студентов, которые находятся одновременно в нескольких группах.");
+    foreach (StudentDTO i in data)
+    {
+        Console.WriteLine($"Засранец с именем {i.FirstName} {i.LastName} под номером {i}.");
+    }
+Console.ReadLine();

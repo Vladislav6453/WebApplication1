@@ -78,12 +78,20 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpGet("GetStudentToAnyGroup/{idgroup}/{idstudent}")]
+        [HttpGet("GetStudentToAnyGroup")]
         public async Task<ActionResult> GetStudentToAnyGroup(int idgroup, int idstudent)
         {
             var command = new GetStudentPeveodToAnyGroupComamnd { GroupId = idgroup, StudentId = idstudent };
             await mediator.SendAsync(command);
             return Ok();
+        }
+
+        [HttpGet("GetPovtorStudentToGroupCommand")]
+        public async Task<ActionResult<IEnumerable<StudentDTO>>> GetDublicateStudent()
+        {
+            var command = new GetPovtorStudentToGroupCommand { };
+            var result = await mediator.SendAsync(command);
+            return Ok(result);
         }
     }
 }
